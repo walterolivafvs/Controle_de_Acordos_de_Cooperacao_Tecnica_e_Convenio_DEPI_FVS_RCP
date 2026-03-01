@@ -27,6 +27,8 @@ def fmt_bolinha(cor: str) -> str:
         return "🟡"
     if cor == "vermelho":
         return "🔴"
+    if cor == "cinza":
+        return "⚪"
     return "⚪"
 
 
@@ -61,10 +63,10 @@ def main() -> None:
     # ✅ Compatível com o monitor_act.py (novo formato)
     faixas = (resumo.get("faixas") or {})
 
-    # NOVA LÓGICA (sem 30 dias):
+    # LÓGICA (60/180):
     # - confortável: >180d
-    # - alerta: 61–180d (amarelo)
-    # - crítico: ≤60d (vermelho)
+    # - alerta: 61–180d
+    # - crítico: ≤60d
     confort = parse_int(faixas, "confortavel_acima_180", 0)
     alerta180 = parse_int(faixas, "atencao_61_180", 0)
     crit60 = parse_int(faixas, "critica_ate_60", 0)
@@ -78,11 +80,10 @@ def main() -> None:
 
     # Assunto executivo (só 180/60)
     subject = (
-        "Monitoramento Mensal de Acordos de Cooperação Técnica(ACT‛s)/Convênios/Termos de Cooperação(TC) — "
+        "Monitoramento Mensal de Acordos de Cooperação Técnica (ACT’s) / Convênios / Termos de Cooperação (TC) — "
         f"{data_exec} | 180d:{alerta180} • 60d:{crit60}"
     )
 
-    # Corpo formal (sem anexos) + painel como fonte oficial
     linhas = []
     linhas.append(f"Data de referência: {data_exec}")
     linhas.append("")
@@ -96,7 +97,7 @@ def main() -> None:
     linhas.append(f"- Concluídos (marcados em status_execucao): {concluidos}")
     linhas.append(f"- Ignorados (arquivados): {ignorados}")
     linhas.append("")
-    linhas.append("SITUAÇÃO DOS PRAZOS DE VIGÊNCIA:")
+    linhas.append("SITUAÇÃO DOS PRAZOS DE VIGÊNCIA (janelas de 60 e 180 dias):")
     linhas.append(
         f"{fmt_bolinha('verde')} Instrumentos em situação confortável (vigência superior a 180 dias / superior a 6 meses): {confort}"
     )
@@ -122,8 +123,14 @@ def main() -> None:
     )
     linhas.append("")
     linhas.append(
-        "Recomenda-se o acompanhamento contínuo do Painel Eletrônico de Monitoramento dos Acordos de Cooperação Técnica (ACT's), "
-        "Termos de Colaboração (TC) e Convênios, mediante acesso direto pelo link abaixo, o qual constitui a fonte completa e constantemente atualizada das informações de vigência:"
+        "Observação metodológica: este relatório adota classificação por janelas de 60 e 180 dias para apoiar o acompanhamento mensal. "
+        "O Painel Eletrônico, por sua vez, utiliza categorização por faixas anuais para facilitar a visão macro da base ativa."
+    )
+    linhas.append("")
+    linhas.append(
+        "Recomenda-se o acompanhamento contínuo do Painel Eletrônico de Monitoramento dos Acordos de Cooperação Técnica (ACT’s), "
+        "Termos de Colaboração (TC) e Convênios, mediante acesso direto pelo link abaixo, o qual constitui a fonte regularmente atualizada "
+        "das informações de vigência. Para consulta, basta acessar:"
     )
     linhas.append("https://walterolivafvs.github.io/Controle_de_Acordos_de_Cooperacao_Tecnica_e_Convenio_DEPI_FVS_RCP/")
     linhas.append("")
