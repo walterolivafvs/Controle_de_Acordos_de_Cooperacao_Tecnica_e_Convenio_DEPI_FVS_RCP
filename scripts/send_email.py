@@ -77,7 +77,10 @@ def main() -> None:
     concluidos = int(resumo.get("concluidos", 0) or 0)
 
     # Assunto executivo (só 180/60)
-    subject = f"Monitoramento Mensal de Acordos de Cooperação Técnica(ACT‛s)/Convênios/Termos de Cooperação(TC) — {data_exec} | 180d:{alerta180} • 60d:{crit60}"
+    subject = (
+        "Monitoramento Mensal de Acordos de Cooperação Técnica(ACT‛s)/Convênios/Termos de Cooperação(TC) — "
+        f"{data_exec} | 180d:{alerta180} • 60d:{crit60}"
+    )
 
     # Corpo formal (sem anexos) + painel como fonte oficial
     linhas = []
@@ -94,9 +97,15 @@ def main() -> None:
     linhas.append(f"- Ignorados (arquivados): {ignorados}")
     linhas.append("")
     linhas.append("SITUAÇÃO DOS PRAZOS DE VIGÊNCIA:")
-    linhas.append(f"{fmt_bolinha('verde')} Instrumentos em situação confortável (vigência superior a 180 dias / superior a 6 meses): {confort}")
-    linhas.append(f"{fmt_bolinha('amarelo')} Instrumentos em alerta de atenção (vigência entre 61 e 180 dias / dentro dos próximos 6 meses): {alerta180}")
-    linhas.append(f"{fmt_bolinha('vermelho')} Instrumentos em situação crítica (vigência até 60 dias / até 2 meses): {crit60}")
+    linhas.append(
+        f"{fmt_bolinha('verde')} Instrumentos em situação confortável (vigência superior a 180 dias / superior a 6 meses): {confort}"
+    )
+    linhas.append(
+        f"{fmt_bolinha('amarelo')} Instrumentos em alerta de atenção (vigência entre 61 e 180 dias / dentro dos próximos 6 meses): {alerta180}"
+    )
+    linhas.append(
+        f"{fmt_bolinha('vermelho')} Instrumentos em situação crítica (vigência até 60 dias / até 2 meses): {crit60}"
+    )
 
     if vencido:
         linhas.append(f"{fmt_bolinha('vermelho')} Instrumentos com vigência expirada: {vencido}")
@@ -112,13 +121,13 @@ def main() -> None:
         "prorrogação, renovação ou adoção das providências administrativas cabíveis."
     )
     linhas.append("")
-linhas.append(
-    "Recomenda-se o acompanhamento contínuo do Painel Eletrônico de Monitoramento dos Acordos de Cooperação Técnica (ACT's), Termos de Colaboração (TC) e Convênios"
-    "o qual constitui a fonte oficial e permanentemente atualizada das informações de vigência:"
-)
-linhas.append("https://walterolivafvs.github.io/Controle_de_Acordos_de_Cooperacao_Tecnica_e_Convenio_DEPI_FVS_RCP/")
-linhas.append("")
-linhas.append("Relatório gerado automaticamente pelo sistema de monitoramento.")
+    linhas.append(
+        "Recomenda-se o acompanhamento contínuo do Painel Eletrônico de Monitoramento dos Acordos de Cooperação Técnica (ACT's), "
+        "Termos de Colaboração (TC) e Convênios, o qual constitui a fonte oficial e permanentemente atualizada das informações de vigência:"
+    )
+    linhas.append("https://walterolivafvs.github.io/Controle_de_Acordos_de_Cooperacao_Tecnica_e_Convenio_DEPI_FVS_RCP/")
+    linhas.append("")
+    linhas.append("Relatório gerado automaticamente pelo sistema de monitoramento.")
 
     body = "\n".join(linhas)
 
