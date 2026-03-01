@@ -84,13 +84,12 @@ def main() -> None:
     subject = f"Monitoramento Mensal de ACTs/Convênios — {data_exec} | 180d:{alerta180} • 60d:{crit60}"
 
     # Corpo formal (sem anexos)
-    linhas = []
-    linhas.append("")
+        linhas = []
     linhas.append(f"Data de referência: {data_exec}")
     linhas.append("")
     linhas.append(
-        "Em cumprimento à rotina de monitoramento institucional das vigências dos instrumentos jurídicos vigentes, "
-        "apresenta-se o seguinte panorama consolidado:"
+        "Em cumprimento à rotina de monitoramento institucional da vigência dos instrumentos, "
+        "apresenta-se o panorama consolidado a seguir:"
     )
     linhas.append("")
     linhas.append("BASE (sem arquivados):")
@@ -106,27 +105,24 @@ def main() -> None:
     if vencido:
         linhas.append(f"{fmt_bolinha('vermelho')} Instrumentos com vigência expirada: {vencido}")
     if sem_data:
-        linhas.append(f"{fmt_bolinha('cinza')} Instrumentos sem registro válido de vigência: {sem_data}")
-
-    if menor_d is not None:
-        try:
-            menor_d_int = int(menor_d)
-            linhas.append("")
-            linhas.append(f"Menor prazo identificado no período: {menor_d_int} dia(s) — {menor_id or 'Identificação não informada'}")
-        except Exception:
-            pass
+        linhas.append(f"{fmt_bolinha('⚪')} Instrumentos sem registro válido de vigência: {sem_data}")
 
     linhas.append("")
-    linhas.append("Os prazos acima são recalculados automaticamente a cada execução do sistema, com base na data corrente.")
+    linhas.append(
+        "Os prazos acima são recalculados automaticamente a cada execução do sistema, com base na data corrente."
+    )
     linhas.append(
         "Recomenda-se que os instrumentos enquadrados nas faixas de alerta sejam avaliados quanto à necessidade de "
         "prorrogação, renovação ou adoção das providências administrativas cabíveis."
     )
     linhas.append("")
-linhas.append("Relatório gerado automaticamente pelo sistema de monitoramento institucional.")
-linhas.append("")
-linhas.append("Acesso ao painel de monitoramento dos ACTs: https://SEU-LINK-AQUI")
-
+    linhas.append(
+        "Recomenda-se o acompanhamento contínuo do Painel Eletrônico de Monitoramento dos ACTs, "
+        "o qual constitui a fonte oficial e permanentemente atualizada das informações de vigência:"
+    )
+    linhas.append("https://SEU-LINK-AQUI")
+    linhas.append("")
+    linhas.append("Relatório gerado automaticamente pelo sistema de monitoramento institucional.")
     body = "\n".join(linhas)
 
     msg = EmailMessage()
