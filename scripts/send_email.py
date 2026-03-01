@@ -85,7 +85,6 @@ def main() -> None:
 
     # Corpo formal (sem anexos)
     linhas = []
-    linhas.append("Assunto: Monitoramento mensal de vigência de ACTs e Convênios")
     linhas.append("")
     linhas.append(f"Data de referência: {data_exec}")
     linhas.append("")
@@ -124,7 +123,9 @@ def main() -> None:
         "prorrogação, renovação ou adoção das providências administrativas cabíveis."
     )
     linhas.append("")
-    linhas.append("Relatório gerado automaticamente pelo sistema de monitoramento institucional.")
+linhas.append("Relatório gerado automaticamente pelo sistema de monitoramento institucional.")
+linhas.append("")
+linhas.append("Acesso ao painel de monitoramento dos ACTs: https://SEU-LINK-AQUI")
 
     body = "\n".join(linhas)
 
