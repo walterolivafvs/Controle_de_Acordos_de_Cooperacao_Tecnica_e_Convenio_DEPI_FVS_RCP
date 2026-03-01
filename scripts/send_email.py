@@ -123,7 +123,7 @@ def main() -> None:
     linhas.append("")
     linhas.append(
         "Recomenda-se o acompanhamento contínuo do Painel Eletrônico de Monitoramento dos Acordos de Cooperação Técnica (ACT's), "
-        "Termos de Colaboração (TC) e Convênios, o qual constitui a fonte oficial e permanentemente atualizada das informações de vigência:"
+        "Termos de Colaboração (TC) e Convênios, mediante acesso direto pelo link abaixo, o qual constitui a fonte completa e constantemente atualizada das informações de vigência:"
     )
     linhas.append("https://walterolivafvs.github.io/Controle_de_Acordos_de_Cooperacao_Tecnica_e_Convenio_DEPI_FVS_RCP/")
     linhas.append("")
