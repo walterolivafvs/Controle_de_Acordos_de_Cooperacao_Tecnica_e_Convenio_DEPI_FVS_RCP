@@ -94,9 +94,9 @@ def main() -> None:
     linhas.append(f"- Ignorados (arquivados): {ignorados}")
     linhas.append("")
     linhas.append("SITUAÇÃO DOS PRAZOS DE VIGÊNCIA:")
-    linhas.append(f"{fmt_bolinha('verde')} Instrumentos em situação confortável (vigência superior a 180 dias): {confort}")
-    linhas.append(f"{fmt_bolinha('amarelo')} Instrumentos em alerta de atenção (vigência entre 61 e 180 dias): {alerta180}")
-    linhas.append(f"{fmt_bolinha('vermelho')} Instrumentos em situação crítica (vigência até 60 dias): {crit60}")
+    linhas.append(f"{fmt_bolinha('verde')} Instrumentos em situação confortável (vigência superior a 180 dias / superior a 6 meses): {confort}")
+    linhas.append(f"{fmt_bolinha('amarelo')} Instrumentos em alerta de atenção (vigência entre 61 e 180 dias / dentro dos próximos 6 meses): {alerta180}")
+    linhas.append(f"{fmt_bolinha('vermelho')} Instrumentos em situação crítica (vigência até 60 dias / até 2 meses): {crit60}")
 
     if vencido:
         linhas.append(f"{fmt_bolinha('vermelho')} Instrumentos com vigência expirada: {vencido}")
@@ -118,7 +118,7 @@ def main() -> None:
     )
     linhas.append("https://SEU-LINK-AQUI")
     linhas.append("")
-    linhas.append("Relatório gerado automaticamente pelo sistema de monitoramento institucional.")
+    linhas.append("Relatório gerado automaticamente pelo sistema de monitoramento.")
 
     body = "\n".join(linhas)
 
