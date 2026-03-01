@@ -56,27 +56,29 @@ def main() -> None:
 
     resumo = json.loads(RESUMO.read_text(encoding="utf-8"))
 
-    data_exec = resumo.get("data_execucao", "").strip() or "N/D"
-    cats = (resumo.get("categorias") or {})
-    al = (resumo.get("alertas") or {})
+    data_exec = (resumo.get("data_execucao", "") or "").strip() or "N/D"
+
+    # ✅ COMPATÍVEL COM O monitor_act.py NOVO:
+    faixas = (resumo.get("faixas") or {})
+    menor = (resumo.get("menor_prazo") or {})
 
     # NOVA LÓGICA (sem 30 dias):
     # - confortável: >180d
     # - alerta: 61–180d (amarelo)
     # - crítico: ≤60d (vermelho)
-    confort = parse_int(cats, "ok", 0)
-    alerta180 = parse_int(al, "alerta_180", 0)
-    crit60 = parse_int(al, "alerta_60", 0)
+    confort = parse_int(faixas, "confortavel_acima_180", 0)
+    alerta180 = parse_int(faixas, "atencao_61_180", 0)
+    crit60 = parse_int(faixas, "critica_ate_60", 0)
 
-    sem_data = parse_int(cats, "sem_data", 0)
-    vencido = parse_int(cats, "vencido", 0)
+    sem_data = parse_int(faixas, "sem_data", 0)
+    vencido = parse_int(faixas, "vencido", 0)
 
     total_base = int(resumo.get("total_base_painel", 0) or 0)
     ignorados = int(resumo.get("ignorados_arquivados", 0) or 0)
     concluidos = int(resumo.get("concluidos", 0) or 0)
 
-    menor_d = resumo.get("menor_prazo_dias", None)
-    menor_id = (resumo.get("menor_prazo_identificacao", "") or "").strip()
+    menor_d = menor.get("dias", None)
+    menor_id = (menor.get("identificacao", "") or "").strip()
 
     # Assunto executivo (só 180/60)
     subject = f"Monitoramento Mensal de ACTs/Convênios — {data_exec} | 180d:{alerta180} • 60d:{crit60}"
@@ -87,7 +89,10 @@ def main() -> None:
     linhas.append("")
     linhas.append(f"Data de referência: {data_exec}")
     linhas.append("")
-    linhas.append("Em cumprimento à rotina de monitoramento institucional das vigências dos instrumentos jurídicos vigentes, apresenta-se o seguinte panorama consolidado:")
+    linhas.append(
+        "Em cumprimento à rotina de monitoramento institucional das vigências dos instrumentos jurídicos vigentes, "
+        "apresenta-se o seguinte panorama consolidado:"
+    )
     linhas.append("")
     linhas.append("BASE (sem arquivados):")
     linhas.append(f"- Total na base do painel: {total_base}")
@@ -114,7 +119,10 @@ def main() -> None:
 
     linhas.append("")
     linhas.append("Os prazos acima são recalculados automaticamente a cada execução do sistema, com base na data corrente.")
-    linhas.append("Recomenda-se que os instrumentos enquadrados nas faixas de alerta sejam avaliados quanto à necessidade de prorrogação, renovação ou adoção das providências administrativas cabíveis.")
+    linhas.append(
+        "Recomenda-se que os instrumentos enquadrados nas faixas de alerta sejam avaliados quanto à necessidade de "
+        "prorrogação, renovação ou adoção das providências administrativas cabíveis."
+    )
     linhas.append("")
     linhas.append("Relatório gerado automaticamente pelo sistema de monitoramento institucional.")
 
