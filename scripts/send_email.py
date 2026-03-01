@@ -112,12 +112,13 @@ def main() -> None:
         "prorrogação, renovação ou adoção das providências administrativas cabíveis."
     )
     linhas.append("")
-    linhas.append(
-        "Recomenda-se o acompanhamento contínuo do Painel Eletrônico de Monitoramento dos Acordos de Cooperação Técnica (ACT‛s), Termos de Colaboração (TC) e Convênios, "
-        "o qual constitui a fonte permanentemente atualizada das informações de vigência:"
-    )
-    linhas.append("https://walterolivafvs.github.io/Controle_de_Acordos_de_Cooperacao_Tecnica_e_Convenio_DEPI_FVS_RCP/")    linhas.append("")
-    linhas.append("Relatório gerado automaticamente pelo sistema de monitoramento.")
+linhas.append(
+    "Recomenda-se o acompanhamento contínuo do Painel Eletrônico de Monitoramento dos Acordos de Cooperação Técnica (ACT's), Termos de Colaboração (TC) e Convênios"
+    "o qual constitui a fonte oficial e permanentemente atualizada das informações de vigência:"
+)
+linhas.append("https://walterolivafvs.github.io/Controle_de_Acordos_de_Cooperacao_Tecnica_e_Convenio_DEPI_FVS_RCP/")
+linhas.append("")
+linhas.append("Relatório gerado automaticamente pelo sistema de monitoramento.")
 
     body = "\n".join(linhas)
 
