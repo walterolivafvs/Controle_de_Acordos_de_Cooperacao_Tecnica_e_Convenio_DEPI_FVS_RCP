@@ -77,7 +77,7 @@ def main() -> None:
     concluidos = int(resumo.get("concluidos", 0) or 0)
 
     # Assunto executivo (só 180/60)
-    subject = f"Monitoramento Mensal de ACTs/Convênios — {data_exec} | 180d:{alerta180} • 60d:{crit60}"
+    subject = f"Monitoramento Mensal de Acordos de Cooperação Técnica(ACTs)/Convênios/Termos de Cooperação(TC) — {data_exec} | 180d:{alerta180} • 60d:{crit60}"
 
     # Corpo formal (sem anexos) + painel como fonte oficial
     linhas = []
@@ -113,8 +113,8 @@ def main() -> None:
     )
     linhas.append("")
     linhas.append(
-        "Recomenda-se o acompanhamento contínuo do Painel Eletrônico de Monitoramento dos ACTs, "
-        "o qual constitui a fonte oficial e permanentemente atualizada das informações de vigência:"
+        "Recomenda-se o acompanhamento contínuo do Painel Eletrônico de Monitoramento dos Acordos de Cooperação Técnica (ACTs), Termos de Colaboração (TC) e Convênios, "
+        "o qual constitui a fonte permanentemente atualizada das informações de vigência:"
     )
     linhas.append("https://SEU-LINK-AQUI")
     linhas.append("")
