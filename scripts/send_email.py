@@ -58,9 +58,8 @@ def main() -> None:
 
     data_exec = (resumo.get("data_execucao", "") or "").strip() or "N/D"
 
-    # ✅ COMPATÍVEL COM O monitor_act.py NOVO:
+    # ✅ Compatível com o monitor_act.py (novo formato)
     faixas = (resumo.get("faixas") or {})
-    menor = (resumo.get("menor_prazo") or {})
 
     # NOVA LÓGICA (sem 30 dias):
     # - confortável: >180d
@@ -77,14 +76,11 @@ def main() -> None:
     ignorados = int(resumo.get("ignorados_arquivados", 0) or 0)
     concluidos = int(resumo.get("concluidos", 0) or 0)
 
-    menor_d = menor.get("dias", None)
-    menor_id = (menor.get("identificacao", "") or "").strip()
-
     # Assunto executivo (só 180/60)
     subject = f"Monitoramento Mensal de ACTs/Convênios — {data_exec} | 180d:{alerta180} • 60d:{crit60}"
 
-    # Corpo formal (sem anexos)
-        linhas = []
+    # Corpo formal (sem anexos) + painel como fonte oficial
+    linhas = []
     linhas.append(f"Data de referência: {data_exec}")
     linhas.append("")
     linhas.append(
@@ -105,7 +101,7 @@ def main() -> None:
     if vencido:
         linhas.append(f"{fmt_bolinha('vermelho')} Instrumentos com vigência expirada: {vencido}")
     if sem_data:
-        linhas.append(f"{fmt_bolinha('⚪')} Instrumentos sem registro válido de vigência: {sem_data}")
+        linhas.append(f"{fmt_bolinha('cinza')} Instrumentos sem registro válido de vigência: {sem_data}")
 
     linhas.append("")
     linhas.append(
@@ -123,6 +119,7 @@ def main() -> None:
     linhas.append("https://SEU-LINK-AQUI")
     linhas.append("")
     linhas.append("Relatório gerado automaticamente pelo sistema de monitoramento institucional.")
+
     body = "\n".join(linhas)
 
     msg = EmailMessage()
