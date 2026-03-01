@@ -116,8 +116,7 @@ def main() -> None:
         "Recomenda-se o acompanhamento contínuo do Painel Eletrônico de Monitoramento dos Acordos de Cooperação Técnica (ACT‛s), Termos de Colaboração (TC) e Convênios, "
         "o qual constitui a fonte permanentemente atualizada das informações de vigência:"
     )
-    linhas.append("https://SEU-LINK-AQUI")
-    linhas.append("")
+    linhas.append("https://walterolivafvs.github.io/Controle_de_Acordos_de_Cooperacao_Tecnica_e_Convenio_DEPI_FVS_RCP/")    linhas.append("")
     linhas.append("Relatório gerado automaticamente pelo sistema de monitoramento.")
 
     body = "\n".join(linhas)
