@@ -84,7 +84,7 @@ def main() -> None:
     linhas.append(f"Data de referência: {data_exec}")
     linhas.append("")
     linhas.append(
-        "Em cumprimento à rotina de monitoramento institucional da vigência dos instrumentos, "
+        "Em cumprimento à rotina de monitoramento da vigência dos instrumentos, "
         "apresenta-se o panorama consolidado a seguir:"
     )
     linhas.append("")
