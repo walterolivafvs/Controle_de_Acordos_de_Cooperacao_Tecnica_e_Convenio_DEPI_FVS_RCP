@@ -1,2 +1,1 @@
-pandas
-python-dateutil
+# Nenhuma dependência externa necessária
